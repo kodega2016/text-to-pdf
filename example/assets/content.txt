@@ -1,0 +1,70 @@
+What is a Dart package?
+Dart packages help us solve issues and create workarounds for problems without having to write the code ourselves from scratch.
+
+For example, let's say we’re building a Flutter app and we discover that we need to upload a picture from our local filesystem and display it in the app. Implementing that ourselves would be tedious and time-consuming.
+
+Chances are, some developer somewhere has already built a Dart package for Flutter to handle the image picking and display functionalities for us. All we have to do is install the package, then use its methods and classes to find and display images. This affords us more time to focus on the core business logic of our app.
+
+
+To follow along with this tutorial, make sure you have the Flutter SDK installed on your machine.
+
+The Flutter SDK is used to build, compile, and run Flutter projects. To install it, head to the official Flutter website and download the appropriate SDK depending on your operating system:
+
+Windows
+macOS
+Linux
+Chrome OS
+
+Dart package types
+There are two types of packages in Dart: regular Dart packages and plugin packages.
+
+Dart packages are general packages written in Dart. They are independent of any native platforms, such as Android and iOS. These packages are Flutter-specific and can only be used on the Flutter framework
+Plugin packages are platform-specific and contain APIs written in Dart code. These packages can be written for Android (using Kotlin or Java), iOS (using Swift or Objective-C), web, macOS, Windows, or Linux
+
+The main file, or the entry file, of this package is lib/flutter_pkg.dart. Flutter sets the main file to be the same as the package name with the .dart extension. Our package name is flutter_pkg, so the main file will be flutter_pkg.dart. If the package name is modalpicker, the main file will be modalpicker.dart.
+
+Let’s look at some of the files and folders we generated to learn what each of them does.
+
+pubspec.yaml contains the information regarding a Flutter package as well as dependencies for that project. It also enables us to specify the assets we want to add to our Flutter project, such as images, fonts, etc.
+.gitignore tells Git which files in our Flutter project to ignore when pushing our code to a repository
+README.md contains general information about the project written in Markdown. This file describes how to install, run, and contribute to the project, among other things
+CHANGELOG.md is where we add changes that were made to the project. This document is also written in Markdown
+
+
+The library flutter_pkg code sets the name of our package to flutter_pkg.
+
+First, we imported the Flutter Material package — this is the root of all Flutter apps. Next, we created a CustomButton class that extends the StatelessWidget class. This causes our CustomButton widget to hold or manage no local state.
+
+We have three properties that the CustomButton widget constructor will receive:
+
+onPressed — This function will be called when the CustomButton widget is pressed or clicked
+style — This property will hold the custom styling of the button from its users. The users might decide to style our CustomButton widget to their taste, so they code the styling and pass it down to the CustomButton widget via the style property
+child — This is a widget tree of the CustomButton widget. This tree is usually a Text widget that displays the text on the button
+The build method renders a TextButton and styles the button as follows:
+
+padding — The padding is set to 16.0 units all sides
+primary — The primary color of the button is set to blue
+backgroundColor — The background color of the button is set to blue
+elevation — The box shadow of the button is elevated to 9.0 units
+textStyle — The font size is set to 20 units to make the button appear much bigger
+
+
+Rather than declaring a font as part of an app, you can declare a font as part of a separate package. This is a convenient way to share the same font across several different projects, or for coders publishing their packages to pub.dev. This recipe uses the following steps:
+
+Add a font to a package.
+Add the package and font to the app.
+Use the font.
+
+
+
+To export a font from a package, you need to import the font files into the lib folder of the package project. You can place font files directly in the lib folder or in a subdirectory, such as lib/fonts.
+
+In this example, assume you’ve got a Flutter library called awesome_package with fonts living in a lib/fonts folder.
+
+
+
+Create a “main” library file directly under lib, lib/<package-name>.dart, that exports all of the public APIs. This allows the user to get all of a library’s functionality by importing a single file.
+
+The lib directory might also include other importable, non-src, libraries. For example, perhaps your main library works across platforms, but you create separate libraries that rely on dart:io or dart:html. Some packages have separate libraries that are meant to be imported with a prefix, when the main library is not.
+
+Let’s look at the organization of a real-world library package: shelf. The shelf package provides an easy way to create web servers using Dart, and is laid out in a structure that is commonly used for Dart library packages:
