@@ -15,13 +15,3 @@ dependencies:
 
   flutter:
     sdk: flutter
-
-
-assets:
-    - fonts/
-
-
-fonts:
-  - family: Helvetica
-    fonts:
-      - asset: lib/fonts/GenYoMinTW-Heavy.ttf
